@@ -1,1 +1,1 @@
-(()=>{"use strict";(class{static loadPage(){document.getElementById("content").innerHTML="<h1>Hello World</h1>"}}).loadPage()})();
+(()=>{"use strict";(class{static loadPage(){document.querySelector(".main").innerHTML="<h1>Hello World</h1>"}}).loadPage()})();
