@@ -7,6 +7,7 @@ export default class UI {
     static loadPage(){
         const content = document.querySelector('.main')
         content.innerHTML = `<h1>Hello World</h1>`
+        
         let data = UI.loadData()
         let projects = data.projects
         UI.displayProjects(projects)
@@ -41,8 +42,16 @@ export default class UI {
     }
 
     static displayProjects(projects){
+        const projectsElement = document.querySelector('.projects')
         projects.forEach(project => {
-            console.log(project.name)
+            let element = document.createElement('p')
+            element.textContent = project.name
+            element.addEventListener('click', UI.showTodos)
+            projectsElement.append(element)
         });
+    }
+
+    static showTodos(){
+        console.log('hello')
     }
 }
