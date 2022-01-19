@@ -1,1 +1,4 @@
-document.body.append("Todo List")
+import Todo from './modules/todo.js'
+
+const todo = new Todo("Test")
+console.log(todo)
