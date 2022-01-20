@@ -1,59 +1,35 @@
-import ProjectList from "./ProjectList";
-import Project from "./Project";
-import Todo from "./Todo";
+// import ProjectList from "./ProjectList";
+// import Project from "./Project";
+// import Todo from "./Todo";
+import TempData from "./TempDataStore"
 
 export default class UI {
 
     static loadPage(){
-        const content = document.querySelector('.main')
-        content.innerHTML = `<h1>Hello World</h1>`
+
+        //get data from temp data store
+        const data = TempData()
+        displayProjects()
         
-        let data = UI.loadData()
-        let projects = data.projects
-        UI.displayProjects(projects)
-    }
+        const content = document.querySelector('.main')
+        content.textContent = `Project`
+        
+        function displayProjects(){
+            const projectsSection = document.querySelector('.projects')
+            let projects = data.projects
+            projects.forEach((project, index) => {
+                let element = document.createElement('p')
+                element.className = 'project'
+                element.dataset.indexNumber = index
+                element.textContent = project.name
+                element.addEventListener('click', displayTodos)
+                projectsSection.append(element)
+            })
+        }
 
-    static loadData(){
-        //dummy data
-        const projectList = new ProjectList()
-
-        const project1 = new Project('Grocery Store')
-        project1.addTodo(new Todo('Milk'))
-        project1.addTodo(new Todo('Cheese'))
-        project1.addTodo(new Todo('Bread'))
-        project1.addTodo(new Todo('Beer'))
-
-        const project2 = new Project('Home Project')
-        project2.addTodo(new Todo('Paint Cabinets'))
-        project2.addTodo(new Todo('Tile Backsplash'))
-        project2.addTodo(new Todo('New Lighting'))
-
-        const project3 = new Project('Workout')
-        project3.addTodo(new Todo('Chest'))
-        project3.addTodo(new Todo('Back'))
-        project3.addTodo(new Todo('Legs'))
-        project3.addTodo(new Todo('Arms'))
-
-        projectList.addProject(project1)
-        projectList.addProject(project2)
-        projectList.addProject(project3)
-
-        return projectList
-    }
-
-    static displayProjects(projects){
-        const projectsElement = document.querySelector('.projects')
-        projects.forEach((project, index) => {
-            let element = document.createElement('p')
-            element.className = 'project'
-            element.dataset.indexNumber = index
-            element.textContent = project.name
-            element.addEventListener('click', UI.displayTodos)
-            projectsElement.append(element)
-        });
-    }
-
-    static displayTodos(e){
-        console.log(this.data)
+        function displayTodos(e){
+            let index = e.srcElement.dataset.indexNumber
+            let project = data.projects[index]
+        }
     }
 }
