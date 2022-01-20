@@ -11,9 +11,6 @@ export default class UI {
         const data = TempData()
         displayProjects()
         
-        const content = document.querySelector('.main')
-        content.textContent = `Project`
-        
         function displayProjects(){
             const projectsSection = document.querySelector('.projects')
             let projects = data.projects
@@ -27,9 +24,26 @@ export default class UI {
             })
         }
 
-        function displayTodos(e){
-            let index = e.srcElement.dataset.indexNumber
+        function displayTodos(){
+            
+            const mainSection = document.querySelector('.main')
+            mainSection.textContent = ''
+    
+            //get index of element that was clicked
+            let index = this.dataset.indexNumber
             let project = data.projects[index]
+
+            const projectName = document.createElement('h1')
+            projectName.textContent = project.name
+            mainSection.append(projectName)
+
+            project.list.forEach(todo => {
+                const todoDiv = document.createElement('div')
+                todoDiv.className = 'todo'
+                todoDiv.textContent = todo.name
+                mainSection.append(todoDiv)
+            })
+            
         }
     }
 }
