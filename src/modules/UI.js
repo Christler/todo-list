@@ -43,15 +43,17 @@ export default class UI {
 
     static displayProjects(projects){
         const projectsElement = document.querySelector('.projects')
-        projects.forEach(project => {
+        projects.forEach((project, index) => {
             let element = document.createElement('p')
+            element.className = 'project'
+            element.dataset.indexNumber = index
             element.textContent = project.name
-            element.addEventListener('click', UI.showTodos)
+            element.addEventListener('click', UI.displayTodos)
             projectsElement.append(element)
         });
     }
 
-    static showTodos(){
-        console.log('hello')
+    static displayTodos(e){
+        console.log(this.data)
     }
 }
