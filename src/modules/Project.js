@@ -2,10 +2,10 @@ export default class Project{
 
     constructor(name){
         this.name = name
-        this.list = []
+        this.todos = []
     }
 
     addTodo(todo){
-        this.list.push(todo)
+        this.todos.push(todo)
     }
 }
