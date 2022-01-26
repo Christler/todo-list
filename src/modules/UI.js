@@ -31,21 +31,21 @@ export default class UI {
             projects.forEach((project, index) => {
                 let element = document.createElement('p')
                 element.className = 'project'
-                element.dataset.indexNumber = index
                 element.textContent = project.name
-                element.addEventListener('click', displayTodos)
+                element.addEventListener('click', () => {
+                    displayTodos(index)
+                })
                 projectsSection.append(element)
             })
         }
 
-        function displayTodos(){
+        function displayTodos(index){
             
             //clear main before showing todos
             const todoSection = document.querySelector('.todos')
             todoSection.textContent = ''
     
             //get project by using index of element that was clicked
-            let index = this.dataset.indexNumber
             selectedProject = data.projects[index]
 
             const projectName = document.createElement('h1')
@@ -69,7 +69,8 @@ export default class UI {
         function addTodo(){
             let name = prompt("Enter todo name")
             selectedProject.addTodo(new Todo(name))
-            console.log(selectedProject)
+            let index = data.projects.findIndex(p => p === selectedProject)
+            displayTodos(index)
         }
     }
 }
