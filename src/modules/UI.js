@@ -1,4 +1,5 @@
 import Project from "./Project"
+import Todo from "./Todo"
 import TempData from "./TempDataStore"
 
 export default class UI {
@@ -9,10 +10,14 @@ export default class UI {
         const data = TempData()
         displayProjects()
         createEventListeners()
+        let selectedProject
 
         function createEventListeners(){
             const newProjectBtn = document.querySelector('.newProjectBtn')
             newProjectBtn.addEventListener('click', addProject)
+
+            const newTodoBtn = document.querySelector('.newTodoBtn')
+            newTodoBtn.addEventListener('click', addTodo)
         }
         
         function displayProjects(){
@@ -36,22 +41,22 @@ export default class UI {
         function displayTodos(){
             
             //clear main before showing todos
-            const mainSection = document.querySelector('.main')
-            mainSection.textContent = ''
+            const todoSection = document.querySelector('.todos')
+            todoSection.textContent = ''
     
             //get project by using index of element that was clicked
             let index = this.dataset.indexNumber
-            let project = data.projects[index]
+            selectedProject = data.projects[index]
 
             const projectName = document.createElement('h1')
-            projectName.textContent = project.name
-            mainSection.append(projectName)
+            projectName.textContent = selectedProject.name
+            todoSection.append(projectName)
 
-            project.todos.forEach(todo => {
+            selectedProject.todos.forEach(todo => {
                 const todoDiv = document.createElement('div')
                 todoDiv.className = 'todo'
                 todoDiv.textContent = todo.name
-                mainSection.append(todoDiv)
+                todoSection.append(todoDiv)
             })  
         }
 
@@ -59,6 +64,12 @@ export default class UI {
             let name = prompt("Enter project name")
             data.projects.push(new Project(name))
             displayProjects()
+        }
+
+        function addTodo(){
+            let name = prompt("Enter todo name")
+            selectedProject.addTodo(new Todo(name))
+            console.log(selectedProject)
         }
     }
 }
