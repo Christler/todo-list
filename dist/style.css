@@ -22,3 +22,7 @@ header h1{
     background-color: lightcoral;
     padding: 20px;
 }
+
+.newTodoSection{
+    display: none;
+}
