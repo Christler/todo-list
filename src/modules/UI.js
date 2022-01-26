@@ -22,7 +22,6 @@ export default class UI {
 
         function displayProjects() {
 
-            //clear project section before displaying
             const projectsSection = document.querySelector('.projects')
             projectsSection.textContent = ''
 
@@ -40,17 +39,15 @@ export default class UI {
         }
 
         function displayTodos(index) {
-            
-            if(!selectedProject){
+
+            if (!selectedProject) {
                 const newTodoSection = document.querySelector('.newTodoSection')
                 newTodoSection.style.display = 'block'
             }
 
-            //clear main before showing todos
             const todoSection = document.querySelector('.todos')
             todoSection.textContent = ''
 
-            //get project by using index of element that was clicked
             selectedProject = data.projects[index]
 
             const projectName = document.createElement('h1')
@@ -72,14 +69,10 @@ export default class UI {
         }
 
         function addTodo() {
-            if (selectedProject) {
-                let name = prompt("Enter todo name")
-                selectedProject.addTodo(new Todo(name))
-                let index = data.projects.findIndex(p => p === selectedProject)
-                displayTodos(index)
-            }else{
-                alert("Select a existing Project or create a new one.")
-            }
+            let name = prompt("Enter todo name")
+            selectedProject.addTodo(new Todo(name))
+            let index = data.projects.findIndex(p => p === selectedProject)
+            displayTodos(index)
         }
     }
 }
