@@ -27,10 +27,6 @@ header h1{
     width: 100%;
 }
 
-.newTodoSection{
-    display: none;
-}
-
 .todo{
     display: flex;
     justify-content: space-between;

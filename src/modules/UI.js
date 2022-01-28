@@ -25,28 +25,16 @@ export default class UI {
             const projectsSection = document.querySelector('.projects')
             projectsSection.textContent = ''
 
-            let projects = data.projects
-
-            projects.forEach((project, index) => {
+            data.projects.forEach((project, index) => {
                 let element = document.createElement('p')
                 element.className = 'project'
                 element.textContent = project.name
                 element.addEventListener('click', () => {
-                    displayTodos(index)
+                    project.displayTodos()
+                    selectedProject = data.projects[index]
                 })
                 projectsSection.append(element)
             })
-        }
-
-        function displayTodos(index) {
-
-            if (!selectedProject) {
-                const newTodoSection = document.querySelector('.newTodoSection')
-                newTodoSection.style.display = 'block'
-            }
-
-            selectedProject = data.projects[index]
-            selectedProject.displayTodos()
         }
 
         function addProject() {
@@ -58,7 +46,7 @@ export default class UI {
         function addTodo() {
             let name = prompt("Enter todo name")
             selectedProject.addTodo(new Todo(name))
-            displayTodos(data.getProjectIndex(selectedProject))
+            selectedProject.displayTodos()
         }
     }
 }
