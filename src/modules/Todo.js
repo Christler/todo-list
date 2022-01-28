@@ -13,11 +13,11 @@ export default class Todo {
         this.name = name
     }
 
-    getComplete(){
+    getCompleteStatus(){
         return this.complete
     }
 
-    setComplete(){
+    setCompleteStatus(){
         if(this.complete){
             this.complete = false
         }else{

@@ -58,7 +58,16 @@ export default class UI {
                 const todoDiv = document.createElement('div')
                 todoDiv.dataset.indexNumber = index
                 todoDiv.className = 'todo'
-                todoDiv.textContent = todo.name
+                
+                const todoCheckbox = document.createElement('input')
+                todoCheckbox.checked = todo.getCompleteStatus()
+                todoCheckbox.setAttribute('type', 'checkbox')
+                todoCheckbox.addEventListener('click', () => {
+                    markComplete(index)
+                })
+                
+                const todoName = document.createElement('div')
+                todoName.textContent = todo.name
                 
                 const deleteBtn = document.createElement('button')
                 deleteBtn.className = 'deleteBtn'
@@ -67,7 +76,7 @@ export default class UI {
                     deleteTodo(index)
                 })
                 
-                todoDiv.append(deleteBtn)
+                todoDiv.append(todoCheckbox, todoName, deleteBtn)
                 todoSection.append(todoDiv)
             })
         }
@@ -89,6 +98,10 @@ export default class UI {
             selectedProject.deleteTodo(index)
             let projectIndex = data.getProjectIndex(selectedProject)
             displayTodos(projectIndex)
+        }
+
+        function markComplete(index){
+            selectedProject.todos[index].setCompleteStatus()
         }
     }
 }
