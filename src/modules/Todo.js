@@ -3,6 +3,7 @@ export default class Todo {
     constructor(name){
         this.name = name
         this.complete = false
+        this.dueDate = ''
     }
 
     getName(){
@@ -23,5 +24,13 @@ export default class Todo {
         }else{
             this.complete = true
         }
+    }
+
+    getDueDate(){
+        return this.dueDate
+    }
+
+    setDueDate(dueDate){
+        this.dueDate = dueDate
     }
 }
