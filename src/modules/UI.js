@@ -54,10 +54,20 @@ export default class UI {
             projectName.textContent = selectedProject.name
             todoSection.append(projectName)
 
-            selectedProject.todos.forEach(todo => {
+            selectedProject.todos.forEach((todo, index) => {
                 const todoDiv = document.createElement('div')
+                todoDiv.dataset.indexNumber = index
                 todoDiv.className = 'todo'
                 todoDiv.textContent = todo.name
+                
+                const deleteBtn = document.createElement('button')
+                deleteBtn.className = 'deleteBtn'
+                deleteBtn.textContent = 'X'
+                deleteBtn.addEventListener('click', () => {
+                    deleteTodo(index)
+                })
+                
+                todoDiv.append(deleteBtn)
                 todoSection.append(todoDiv)
             })
         }
@@ -71,8 +81,14 @@ export default class UI {
         function addTodo() {
             let name = prompt("Enter todo name")
             selectedProject.addTodo(new Todo(name))
-            let index = data.projects.findIndex(p => p === selectedProject)
-            displayTodos(index)
+            let projectIndex = data.getProjectIndex(selectedProject)
+            displayTodos(projectIndex)
+        }
+
+        function deleteTodo(index){
+            selectedProject.deleteTodo(index)
+            let projectIndex = data.getProjectIndex(selectedProject)
+            displayTodos(projectIndex)
         }
     }
 }

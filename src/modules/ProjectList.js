@@ -12,4 +12,7 @@ export default class ProjectList {
         return this.projects
     }
 
+    getProjectIndex(selectedProject){
+        return this.projects.findIndex(p => p === selectedProject)
+    }
 }
