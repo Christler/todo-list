@@ -2,11 +2,12 @@ html, body{
     margin: 0;
     height: 100%;
     overflow: hidden;
+    color: #ffffff;
 }
 
 header{
-    background-color: lightblue;
-    margin: 0;
+    background-color: #000000;
+    padding: 20px;
 }
 
 header h1{
@@ -19,12 +20,59 @@ header h1{
 }
 
 .leftPanel{
-    background-color: lightcoral;
+    background-color: #212121;
+    width: 20%;
     padding: 20px;
 }
 
+.projectsHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.newProjectBtn{
+    height: 40px;
+    width: 40px;
+    font-size: 25px;
+    border-radius: 50%;
+    border: 2px solid #03dac6;
+    color: #03dac6;
+    background-color: #212121;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.newProjectBtn:hover{
+    background-color: #03dac6;
+    color: #212121;
+}
+
 .main{
+    background-color: #303030;
     width: 100%;
+}
+
+.project{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.project:hover{
+    background-color: #303030;
+}
+
+.deleteProjectBtn{
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border: none;
+    color: #cf6679;
 }
 
 .todo{
