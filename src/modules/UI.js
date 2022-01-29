@@ -6,7 +6,6 @@ export default class UI {
 
     static loadPage() {
 
-        //get data from temp data store
         const data = TempData()
         displayProjects()
         createEventListeners()
@@ -40,6 +39,10 @@ export default class UI {
                 deleteProjectBtn.textContent = 'X'
                 deleteProjectBtn.className = 'deleteProjectBtn'
                 deleteProjectBtn.addEventListener('click', () => {
+                    if(selectedProject === data.projects[index]){
+                        const todoSection = document.querySelector('.todos')
+                        todoSection.textContent = ''
+                    }
                     data.deleteProject(index)
                     displayProjects()
                 })
@@ -48,7 +51,6 @@ export default class UI {
                 projectsSection.append(projectDiv)
             })
         }
-
 
         function addProject() {
             let name = prompt("Enter project name")
