@@ -26,16 +26,29 @@ export default class UI {
             projectsSection.textContent = ''
 
             data.projects.forEach((project, index) => {
-                let element = document.createElement('p')
-                element.className = 'project'
-                element.textContent = project.name
-                element.addEventListener('click', () => {
+                let projectDiv = document.createElement('div')
+                projectDiv.className = 'project'
+
+                let projectName = document.createElement('div')
+                projectName.textContent = project.name
+                projectName.addEventListener('click', () => {
                     project.displayTodos()
                     selectedProject = data.projects[index]
                 })
-                projectsSection.append(element)
+
+                let deleteProjectBtn = document.createElement('button')
+                deleteProjectBtn.textContent = 'X'
+                deleteProjectBtn.className = 'deleteProjectBtn'
+                deleteProjectBtn.addEventListener('click', () => {
+                    data.deleteProject(index)
+                    displayProjects()
+                })
+
+                projectDiv.append(projectName, deleteProjectBtn)
+                projectsSection.append(projectDiv)
             })
         }
+
 
         function addProject() {
             let name = prompt("Enter project name")

@@ -15,4 +15,8 @@ export default class ProjectList {
     getProjectIndex(selectedProject){
         return this.projects.findIndex(p => p === selectedProject)
     }
+
+    deleteProject(index){
+        this.projects.splice(index, 1)
+    }
 }
