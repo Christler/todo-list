@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
 html, body{
     margin: 0;
     height: 100%;
     overflow: hidden;
     color: #ffffff;
+    font-family: 'Roboto', sans-serif;
 }
 
 header{
@@ -61,6 +64,7 @@ header h1{
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 26px;
 }
 
 .project:hover{
@@ -73,6 +77,47 @@ header h1{
     background-color: transparent;
     border: none;
     color: #cf6679;
+    font-size: 26px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.deleteProjectBtn:hover{
+    transform: scale(1.2);
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newTodoSection{
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+.newTodoBtn{
+    height: 40px;
+    width: 40px;
+    margin: 10px;
+    font-size: 25px;
+    border-radius: 50%;
+    border: 2px solid #03dac6;
+    color: #03dac6;
+    background-color: #303030;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.newTodoBtn:hover{
+    background-color: #03dac6;
+    color: #303030;
+}
+
+.todos{
+    width: 75%;
 }
 
 .todo{
@@ -81,7 +126,42 @@ header h1{
     align-items: center;
     margin: 10px;
     padding: 10px;
-    border: 1px solid;
+    border-radius: 10px;
+    background-color: #000000
+}
+
+.todoName{
+    width: 100%;
+    font-size: 22px;
+    padding: 10px;
+}
+
+.dueDate{
+    width: 120px;
+}
+
+.datePicker{
+    font-size: 18px;
+    width: 260px;
+}
+
+.calendar{
+    padding: 0 10px;
+}
+
+.deleteTodoBtn{
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border: none;
+    color: #cf6679;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.deleteTodoBtn:hover{
+    transform: scale(1.2);
 }
 
 .hidden{

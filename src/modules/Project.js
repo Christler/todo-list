@@ -33,13 +33,16 @@ export default class Project {
             })
 
             const todoName = document.createElement('div')
+            todoName.className = 'todoName'
             todoName.textContent = todo.name
 
             const dueDate = document.createElement('p')
+            dueDate.className = 'dueDate'
             dueDate.textContent = todo.getDueDate()
 
             const datePicker = document.createElement('input')
             datePicker.setAttribute('type', 'date')
+            datePicker.className = 'datePicker'
             datePicker.value = todo.getDueDate()
             datePicker.addEventListener('change', (e) => {
                 todo.setDueDate(e.target.value)
@@ -49,12 +52,13 @@ export default class Project {
 
             const calendarIcon = document.createElement('i')
             calendarIcon.className = 'fas fa-calendar'
+            calendarIcon.classList.add('calendar')
             calendarIcon.addEventListener('click', () =>{
                 datePicker.classList.toggle('hidden')
             })
 
             const deleteBtn = document.createElement('button')
-            deleteBtn.className = 'deleteBtn'
+            deleteBtn.className = 'deleteTodoBtn'
             deleteBtn.textContent = 'X'
             deleteBtn.addEventListener('click', () => {
                 this.deleteTodo(index)
