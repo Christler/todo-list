@@ -1,3 +1,4 @@
+import format from "date-fns/format"
 import Project from "./Project"
 import Todo from "./Todo"
 import TempData from "./TempDataStore"
@@ -12,6 +13,9 @@ export default class UI {
         let selectedProject
 
         function createEventListeners() {
+            const today = document.querySelector('.today')
+            today.addEventListener('click', todaysTodos)
+            
             const newProjectBtn = document.querySelector('.newProjectBtn')
             newProjectBtn.addEventListener('click', addProject)
 
@@ -63,6 +67,15 @@ export default class UI {
             let name = prompt("Enter todo name")
             selectedProject.addTodo(new Todo(name))
             selectedProject.displayTodos()
+        }
+
+        function todaysTodos(){
+            let today = format(new Date(), 'MM/dd/yyyy')
+            console.log(`Today's date: ${today}`)
+            data.projects.forEach(project => {
+                let todos = project.todos
+                console.log(todos.filter(todo => todo.getDueDate() === today))
+            })
         }
     }
 }
