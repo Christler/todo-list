@@ -1,3 +1,5 @@
+import { format } from "date-fns"
+
 export default class Todo {
     
     constructor(name){
@@ -31,6 +33,6 @@ export default class Todo {
     }
 
     setDueDate(dueDate){
-        this.dueDate = dueDate
+        this.dueDate = format(new Date(dueDate), 'MM/dd/yyyy')
     }
 }
