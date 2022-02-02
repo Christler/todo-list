@@ -71,6 +71,10 @@ header h1{
     background-color: #303030;
 }
 
+.projectName{
+    width: 100%;
+}
+
 .deleteProjectBtn{
     width: 25px;
     height: 25px;
@@ -143,7 +147,7 @@ header h1{
 .datePicker{
     font-size: 18px;
     width: 260px;
-}
+} 
 
 .calendar{
     padding: 0 10px;
@@ -165,5 +169,5 @@ header h1{
 }
 
 .hidden{
-    display: none;
+    display: none !important;
 }

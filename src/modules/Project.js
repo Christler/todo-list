@@ -14,6 +14,10 @@ export default class Project {
     }
 
     displayTodos() {
+
+        const newTodoSection = document.querySelector('.newTodoSection')
+        newTodoSection.classList.remove('hidden')
+
         const todoSection = document.querySelector('.todos')
         todoSection.textContent = ''
 
@@ -55,6 +59,7 @@ export default class Project {
             calendarIcon.classList.add('calendar')
             calendarIcon.addEventListener('click', () =>{
                 datePicker.classList.toggle('hidden')
+                calendarIcon.classList.toggle('hidden')
             })
 
             const deleteBtn = document.createElement('button')

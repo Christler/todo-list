@@ -29,6 +29,7 @@ export default class UI {
                 projectDiv.className = 'project'
 
                 let projectName = document.createElement('div')
+                projectName.className = "projectName"
                 projectName.textContent = project.name
                 projectName.addEventListener('click', () => {
                     project.displayTodos()
