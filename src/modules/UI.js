@@ -15,7 +15,7 @@ export default class UI {
         function createEventListeners() {
             const today = document.querySelector('.today')
             today.addEventListener('click', todaysTodos)
-            
+
             const newProjectBtn = document.querySelector('.newProjectBtn')
             newProjectBtn.addEventListener('click', addProject)
 
@@ -44,7 +44,7 @@ export default class UI {
                 deleteProjectBtn.textContent = 'X'
                 deleteProjectBtn.className = 'deleteProjectBtn'
                 deleteProjectBtn.addEventListener('click', () => {
-                    if(selectedProject === data.projects[index]){
+                    if (selectedProject === data.projects[index]) {
                         const todoSection = document.querySelector('.todos')
                         todoSection.textContent = ''
                     }
@@ -69,12 +69,49 @@ export default class UI {
             selectedProject.displayTodos()
         }
 
-        function todaysTodos(){
-            let today = format(new Date(), 'MM/dd/yyyy')
-            console.log(`Today's date: ${today}`)
-            data.projects.forEach(project => {
-                let todos = project.todos
-                console.log(todos.filter(todo => todo.getDueDate() === today))
+        function todaysTodos() {
+
+            const newTodoSection = document.querySelector('.newTodoSection')
+            newTodoSection.classList.add('hidden')
+
+            const todoSection = document.querySelector('.todos')
+            todoSection.textContent = ''
+
+            let today = format(new Date(), 'yyyy-MM-dd')
+
+            data.projects.forEach((project, i) => {
+                project.todos.forEach((todo, j) => {
+                    if (todo.getDueDate() === today) {
+                        const todoDiv = document.createElement('div')
+                        todoDiv.className = 'todo'
+
+                        const todoCheckbox = document.createElement('input')
+                        todoCheckbox.setAttribute('type', 'checkbox')
+                        todoCheckbox.checked = todo.getCompleteStatus()
+                        todoCheckbox.addEventListener('click', () => {
+                            todo.setCompleteStatus()
+                        })
+
+                        const todoName = document.createElement('div')
+                        todoName.className = 'todoName'
+                        todoName.textContent = todo.name
+
+                        const dueDate = document.createElement('p')
+                        dueDate.className = 'dueDate'
+                        dueDate.textContent = todo.getDueDate()
+
+                        const deleteBtn = document.createElement('button')
+                        deleteBtn.className = 'deleteTodoBtn'
+                        deleteBtn.textContent = 'X'
+                        deleteBtn.addEventListener('click', () => {
+                            data.projects[i].deleteTodo(j)
+                            todaysTodos()
+                        })
+
+                        todoDiv.append(todoCheckbox, todoName, dueDate, deleteBtn)
+                        todoSection.append(todoDiv)
+                    }
+                })
             })
         }
     }
