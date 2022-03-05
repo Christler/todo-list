@@ -113,6 +113,13 @@ export default class UI {
                     }
                 })
             })
+
+            if(todoSection.childElementCount < 1){
+                let noTasks = document.createElement('h2')
+                noTasks.className = 'noTasks'
+                noTasks.textContent = 'No Tasks For Today!'
+                todoSection.append(noTasks)
+            }
         }
     }
 }

@@ -28,6 +28,11 @@ header h1{
     padding: 20px;
 }
 
+.noTasks{
+    text-align: center;
+    padding: 20px;
+}
+
 .today, .thisWeek{
     margin: 10px;
     padding: 10px;
